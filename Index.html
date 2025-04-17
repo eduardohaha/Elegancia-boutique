@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Boutique Elegancia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      color: #333;
+    }
+
+    header {
+      background-color: #d8a7b1;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      color: #fff;
+    }
+
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+    }
+
+    .hero {
+      background: url('https://via.placeholder.com/1200x400') center/cover no-repeat;
+      color: #fff;
+      text-align: center;
+      padding: 100px 20px;
+    }
+
+    section {
+      padding: 40px 20px;
+      text-align: center;
+    }
+
+    .galeria {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .producto {
+      border: 1px solid #ddd;
+      padding: 10px;
+      width: 200px;
+    }
+
+    .producto button {
+      margin-top: 10px;
+      padding: 8px 12px;
+      background-color: #d8a7b1;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+    }
+
+    footer {
+      background: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px;
+    }
+
+    #carrito {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #fff;
+      border: 2px solid #d8a7b1;
+      padding: 10px;
+      width: 200px;
+      z-index: 1000;
+    }
+
+    #carrito h3 {
+      margin-top: 0;
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .hero {
+        padding: 60px 20px;
+      }
+
+      .galeria {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .producto {
+        width: 80%;
+      }
+
+      #carrito {
+        width: 90%;
+        right: 5%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Boutique Elegancia</h1>
+    <nav>
+      <ul>
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#productos">Productos</a></li>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="inicio" class="hero">
+    <h2>Bienvenida a tu tienda de moda</h2>
+    <p>Descubre lo último en tendencias</p>
+  </section>
+
+  <section id="productos">
+    <h2>Productos Destacados</h2>
+    <div class="galeria">
+      <div class="producto">
+        <img src="https://via.placeholder.com/200" alt="Producto 1" />
+        <p>Vestido Floral</p>
+        <button onclick="agregarAlCarrito('Vestido Floral')">Agregar al carrito</button>
+      </div>
+      <div class="producto">
+        <img src="https://via.placeholder.com/200" alt="Producto 2" />
+        <p>Blusa Elegante</p>
+        <button onclick="agregarAlCarrito('Blusa Elegante')">Agregar al carrito</button>
+      </div>
+      <!-- Puedes seguir agregando más productos iguales -->
+    </div>
+  </section>
+
+  <section id="nosotros">
+    <h2>Sobre Nosotros</h2>
+    <p>Somos una boutique apasionada por la moda, ofreciendo piezas únicas para mujeres elegantes y modernas.</p>
+  </section>
+
+  <section id="contacto">
+    <h2>Contacto</h2>
+    <p>Email: contacto@boutiqueelegancia.com</p>
+    <p>Instagram: @boutiqueelegancia</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Boutique Elegancia. Todos los derechos reservados.</p>
+  </footer>
+
+  <div id="carrito">
+    <h3>Carrito (<span id="contador">0</span>)</h3>
+    <ul id="lista-carrito"></ul>
+  </div>
+
+  <script>
+    const carrito = [];
+
+    function agregarAlCarrito(producto) {
+      carrito.push(producto);
+      actualizarCarrito();
+    }
+
+    function actualizarCarrito() {
+      const lista = document.getElementById("lista-carrito");
+      const contador = document.getElementById("contador");
+
+      lista.innerHTML = "";
+      carrito.forEach((item) => {
+        const li = document.createElement("li");
+        li.textContent = item;
+        lista.appendChild(li);
+      });
+
+      contador.textContent = carrito.length;
+    }
+  </script>
+</body>
+</html>
